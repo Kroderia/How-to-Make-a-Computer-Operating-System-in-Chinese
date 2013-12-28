@@ -29,7 +29,7 @@
 
 #### [第4章: OS的中枢与C++运行环境](Chapter-4/README.md)
 
-#### Chapter 5: Base classes for managing x86 architecture
+#### [第5章: 管理x86架构的基类](Chapter-5/README.md)
 
 #### Chapter 6: GDT
 
