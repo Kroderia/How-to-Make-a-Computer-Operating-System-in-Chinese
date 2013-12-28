@@ -74,4 +74,4 @@ ASM=nasm
 ASMFLAG=-f elf -o
 ```
 
-<table><tr><td><a href="../Chapter-3/README.md" >&larr; Previous</a></td><td><a href="../Chapter-5/README.md" >Next &rarr;</a></td></tr></table>
+<table><tr><td><a href="../Chapter-3/README.md" >&larr; 上一篇</a></td><td><a href="../Chapter-5/README.md" >下一篇 &rarr;</a></td></tr></table>
