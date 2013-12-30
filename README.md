@@ -1,25 +1,23 @@
 如何制作一个操作系统
 =======================================
 
-**注意**: 这个repo是我以前的课程的重制. [它是我还在高校时最早的一个project.](https://github.com/SamyPesse/devos). 我还在重构其中一些部分. 原课程是法语教授的, 而且我也不是英语母语的. 我在空余时间继续改进它.
+**注意**：这个 repo 是我以前的课程的重制。它是我几年前[上高中时候写的第一个 project ](https://github.com/SamyPesse/devos)，我仍然在重构其中的一些部分。原课程是法语教授的，而且我的母语也并非英语。我打算在业余时间里继续将它改进。
 
-**源码**: 所有系统源码都放在`src`文件夹内. 每一步会包含其相关文件的链接.
+**源码**：所有系统源码都放在`src`文件夹内。每一步会包含其相关文件的链接。
 
-**投稿**: 这个课程是开放投稿的. 如果发现错误, 随时通过issue或者直接pull request来改正它.
+**贡献**：这个课程是开放的，如果发现错误，请随时作出标记并发起 issue，或者直接通过 pull-request 来改正它。
 
-**问题**: 同样可以随意通过issue来问问题. 请不要给我发邮件.
+**问题**：同样可以随意发起 issue 来提问。请不要给我发邮件。
 
-你可以在Twitter[@SamyPesse](https://twitter.com/SamyPesse)上关注我, 在[Flattr](https://flattr.com/profile/samy.pesse)或[Gittip](https://www.gittip.com/SamyPesse/)上支持我.
+你可以在 Twitter [@SamyPesse](https://twitter.com/SamyPesse)上关注我，[Flattr](https://flattr.com/profile/samy.pesse)或[Gittip](https://www.gittip.com/SamyPesse/)上进行资助.
 
 ### 我们在制作怎样的操作系统?
 
-目标是使用C++构建一个基于UNIX, 非常简单的操作系统, 而不只是一个"概念验证". 这个操作系统可以启动, 运行一个userland shell, 可以扩展.
-
-
+目标是使用 C++ 来构建一个非常简单，基于 UNIX 的操作系统，而不只是一个“概念验证”。这个操作系统可以启动，运行一个 userland shell，并且可以扩展。
 
 [![Screen](https://raw.github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/master/preview.png)](https://raw.github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/master/preview.png)
 
-### 摘要
+### 目录
 
 #### [第1章: x86与本操作系统简介](Chapter-1/README.md)
 
