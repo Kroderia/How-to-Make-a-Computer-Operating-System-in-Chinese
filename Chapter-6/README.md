@@ -121,4 +121,4 @@ void init_gdt(void)
 }
 ```
 
-<table><tr><td><a href="../Chapter-5/README.md" >&larr; Previous</a></td><td><a href="../Chapter-7/README.md" >Next &rarr;</a></td></tr></table>
+<table><tr><td><a href="../Chapter-5/README.md" >&larr; 上一篇</a></td><td><a href="../Chapter-7/README.md" >下一篇 &rarr;</a></td></tr></table>
