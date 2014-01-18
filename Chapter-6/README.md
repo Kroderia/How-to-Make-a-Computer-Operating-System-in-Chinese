@@ -20,7 +20,7 @@ GDT（"Global Descriptor Table）是一种数据结构，通常来用作给不�
 GRUB 会来初始化 GDT，但是这个 GDT 并不会与我们的内核相对应。
 我们会使用 LGDT 汇编指令来加载 GDT。GDT 描述的结构位置如下：
 
-![GDTR](./gdtr.png)
+![GDTR](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/raw/master/Chapter-6/gdtr.png)
 
 C 语言结构如下：
 
@@ -36,7 +36,7 @@ struct gdtr {
 
 我们的 GDT 表是由下面的结构来组成：
 
-![GDTR](./gdtentry.png)
+![GDTR](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/raw/master/Chapter-6/gdtentry.png)
 
 然后是 C 结构：
 
