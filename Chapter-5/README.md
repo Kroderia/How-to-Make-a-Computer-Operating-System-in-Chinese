@@ -1,18 +1,18 @@
 ## Chapter 5: 管理x86架构的基类
 
-我们已经知道如何编译我们的C++内核以及通过GRUB启动二进制程序了, 后面可以用C/C++来做一些有趣的东西.
+我们已经知道如何编译我们的C++内核以及通过GRUB启动二进制程序了，后面可以用C/C++来做一些有趣的东西。
 
 #### 在屏幕console中进行输出
 
-我们会使用VGA默认模式(`03h`)向用户显示文本. 通过显存的`0xB800`地址就可以直接访问屏幕了. 屏幕分辨率为80x25, 每个字符用2字节来定义: 一个是字符码, 一个是格式标识符. 这意味着这个显存的大小为4000B(80 x 25 x 2B).
+我们会使用VGA默认模式(`03h`)向用户显示文本。通过显存的`0xB800`地址就可以直接访问屏幕了。屏幕分辨率为80x25，每个字符用2字节来定义：一个是字符码，一个是格式标识符。这意味着这个显存的大小为4000B（80 x 25 x 2B）。
 
-IO类([io.cc](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/io.cc)):
-* **x,y**: 定义指针在屏幕中的位置
-* **real_screen**: 定义显存指针
-* **putc(char c)**: 在屏幕上显示一个字符, 以及管理指针位置
-* **printf(char* s, ...)**: 输出一个字符串
+IO类（[io.cc](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/io.cc)）：
+* **x,y**：定义指针在屏幕中的位置
+* **real_screen**：定义显存指针
+* **putc(char c)**：在屏幕上显示一个字符，以及管理指针位置
+* **printf(char* s, ...)**：输出一个字符串
 
-以下是[IO Class](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/io.cc)中的**putc**方法, 用于在屏幕上显示一个字符, 并更新(x, y)位置.
+以下是[IO Class](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/io.cc)中的**putc**方法，用于在屏幕上显示一个字符，并更新(x, y)位置。
 
 ```cpp
 /* put a byte on screen */
@@ -51,7 +51,7 @@ void Io::putc(char c){
 }
 ```
 
-还有一个知名且好用的方法, [printf](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/io.cc#L155).
+还有一个知名且好用的方法：[printf](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/io.cc#L155)
 
 ```cpp
 /* put a string in screen */
@@ -155,11 +155,11 @@ void Io::print(const char *s, ...){
 
 #### 汇编接口
 
-有很多在汇编下可用的指令, 在C下没有等价可用的实现(如cli, sti, in和out), 因此我们需要为这些指令提供一个接口.
+有很多在汇编下可用的指令，在C下没有等价可用的实现（如cli、sti、in和out），因此我们需要为这些指令提供一个接口。
 
-在C中, 我们可以使用`asm()`指令来包含汇编语句, gcc会调用gas来编译它们.
+在C中，我们可以使用`asm()`指令来包含汇编语句，gcc会调用gas来编译它们。
 
-**注意:** gas使用AT&T语法.
+**注意：** gas使用AT&T语法。
 
 ```cpp
 /* output byte */
@@ -193,5 +193,3 @@ u32	Io::inl(u32 ad){
 	return _v;
 }
 ```
-
-<table><tr><td><a href="../Chapter-4/README.md" >&larr; 上一篇</a></td><td><a href="../Chapter-6/README.md" >下一篇 &rarr;</a></td></tr></table>
