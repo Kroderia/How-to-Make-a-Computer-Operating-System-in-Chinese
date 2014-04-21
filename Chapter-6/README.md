@@ -1,28 +1,27 @@
 ## 第六章 GDT
 
-首先感谢 GRUB，如此一来我们的内核不再是在实模式，而是已经在保护模式，这个模式允许我们来使用微处理器的所有的可能性，包括虚拟内存管理，分页，以及安全的多任务。
+首先感谢GRUB,如此一来我们的内核不再是在实模式，而是已经在保护模式，这个模式允许我们来使用微处理器的所有的可能性，包括虚拟内存管理、分页以及安全的多任务。
 
 #### 到底什么是 GDT？
 
-GDT（"Global Descriptor Table）是一种数据结构，通常来用作给不同的内存区域做定义：包括基地址，大小，以及类似执行或者写这样的权限。这些内存区域我们将其称之为“段”。
+GDT（“Global Descriptor Table”，全局描述符表）是一种数据结构，通常用于定义不同的内存区域：基地址、大小以及访问权限，如执行和写入。这些内存区域我们将其称之为“段”。
 
-我们下面将用 GDT 来给不同的内存区段做定义：
+我们下面将用GDT来定义不同的内存段：
 
-* *"code"*： 内核代码，用来存储可执行文件二进制代码
-* *"data"*： 内核数据
-* *"内核栈"*：用来存储内核执行期间的调用栈
-* *"用户代码"*：用户代码，用来存储用户程序的可执行二进制代码
-* *"用户程序数据"*：用户程序数据
-* *"用户栈"*：用来存储用户程序执行期间的调用栈
+* *"code"*：内核代码，用来存储可执行文件二进制代码
+* *"data"*：内核数据
+* *"stack"*：内存栈，用来存储内核执行期间的调用栈
+* *"ucode"*：用户代码，用来存储用户程序的可执行二进制代码
+* *"udata"*：用户程序数据
+* *"ustack"*：用户栈，用来存储userland中运行程序的调用栈
 
-#### 如何来加载我们 GDT？
+#### 如何来加载GDT？
 
-GRUB 会来初始化 GDT，但是这个 GDT 并不会与我们的内核相对应。
-我们会使用 LGDT 汇编指令来加载 GDT。GDT 描述的结构位置如下：
+GRUB会来初始化GDT，但是这个GDT与我们的内核不符。GDT是使用LGDT这一汇编指令加载的。GDT描述的结构位置如下：
 
 ![GDTR](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/raw/master/Chapter-6/gdtr.png)
 
-C 语言结构如下：
+C结构如下：
 
 ```cpp
 struct gdtr {
@@ -31,14 +30,15 @@ struct gdtr {
 } __attribute__ ((packed));
 ```
 
-**注意：** ```__attribute__ ((packed))``` 意味着告诉 gcc 该结构应该用尽量少的内存。倘若没有它，gcc 就会引入一些字节来对内存分配进行优化。
-现在我们来对 GDT 表做个定义，以及然后来使用 LGDT。GDT 表是可以被存放在内存中任意我们想存的位置，它的地址应该告诉使用 GDTR 寄存器的进程。
+**注意：** ```__attribute__ ((packed))```意味着告知gcc，该结构应使用尽量少的内存。倘若没有它，gcc会额外包含一些字节，在运行中对内存对齐及访问进行优化。
 
-我们的 GDT 表是由下面的结构来组成：
+现在需要定义我们的GDT，并用LGDT载入。GDT可存储于内存中的任意位置。其地址存储于GDTR寄存器，以告知进程。
+
+GDT表是由下面的结构组成：
 
 ![GDTR](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/raw/master/Chapter-6/gdtentry.png)
 
-然后是 C 结构：
+C结构：
 
 ```cpp
 struct gdtdesc {
@@ -52,16 +52,16 @@ struct gdtdesc {
 } __attribute__ ((packed));
 ```
 
-#### 如果来定义我们的 GDT 表？
-我们现在需要来给我们的 GDT 表做一个定义，并且最终使用 GDTR 寄存器来加载它。
+#### 如何定义我们的GDT表？
+现在需要定义我们的GDT表，并使用GDTR寄存器来加载它。
 
-我们将 GDT 存储在下面的地址：
+我们将GDT存储在下面的地址：
 
 ```cpp
 #define GDTBASE 0x00000800
 ```
 
-函数 **init_gdt_desc** [x86.cc](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/x86.cc) 初始化一个 GDT 段描述器。
+函数**init_gdt_desc**[x86.cc](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/x86.cc)用于初始化一个GDT段描述器。
 
 
 ```cpp
@@ -78,7 +78,7 @@ void init_gdt_desc(u32 base, u32 limite, u8 acces, u8 other, struct gdtdesc *des
 }
 ```
 
-并且函数 **init_gdt**  会初始化 GDT，我们稍后会解释这个函数的部分，并且会在多任务中使用它。
+函数**init_gdt**会初始化GDT，函数的一些部分，我们会在以后进行解释，它们也会在多任务中被使用。
 
 ```cpp
 void init_gdt(void)
@@ -120,5 +120,3 @@ void init_gdt(void)
     next:       \n");
 }
 ```
-
-<table><tr><td><a href="../Chapter-5/README.md" >&larr; 上一篇</a></td><td><a href="../Chapter-7/README.md" >下一篇 &rarr;</a></td></tr></table>
