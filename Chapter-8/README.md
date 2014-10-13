@@ -1,8 +1,8 @@
 ## 第八章: 内存管理: 物理内存和虚拟内存
 
-在关于GDT的一章，我们可以看到，使用segmentation（分段），一个物理内存地址可以基于segment selector 和 offset 计算得来。
+在关于GDT的一章，我们可以看到，使用segmentation(分段)，一个物理内存地址可以基于segment selector 和 offset 计算得来。
 
-在这一章，我们会实现paging（分页），paging可以将segmentation中线性地址转换成真实的物理地址。
+在这一章，我们会实现paging(分页)，paging可以将segmentation中线性地址转换成真实的物理地址。
 
 #### 为什么我们需要 paging?
 
@@ -22,7 +22,7 @@ Paging 的使用能帮助我们的内核实现如下功能:
 线性地址到物理地址的转换通过以下几步完成:
 
 1. 处理器使用寄存器'CR3'获取 pages directory 的物理地址
-2. 线性地址的前10 bits代表pages directory的offset(偏移），从0到1023，指向pages directory 的一个entry。这个entry包含着pages table的物理地址。
+2. 线性地址的前10 bits代表pages directory的offset(偏移)，从0到1023，指向pages directory 的一个entry。这个entry包含着pages table的物理地址。
 3. 线性地址中接下来的10 bits代表pages table中的offset，指向pages table 中的entry。这个entry指向一个4ko 的page
 4. 线性地址的最后12 bits代表在4ko page中的offset(从0到4095), 指向4ko page中的一个位置。
 
