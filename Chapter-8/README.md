@@ -1,6 +1,6 @@
 ## 第八章: 内存管理: 物理内存和虚拟内存
 
-在关于GDT的一章，我们可以看到，使用segmentation，一个物理内存地址可以基于segment selector 和 offset 计算得来。
+在关于GDT的一章，我们可以看到，使用segmentation（分段），一个物理内存地址可以基于segment selector 和 offset 计算得来。
 
 在这一章，我们会实现paging（分页），paging可以将segmentation中线性地址转换成真实的物理地址。
 
