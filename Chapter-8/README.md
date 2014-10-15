@@ -66,5 +66,5 @@ asm("  mov %%cr0, %%eax; \
 **译者注:**
 
 1. 本章提到的linear address(线性地址) 也经常被称之为virtual address(虚拟地址)
-2. Ko, Mo, Go 中的o代表octet, 1 octet = 8 bits。
+2. Ko, Mo, Go 中的o代表octet, 1 octet = 8 bits
 
