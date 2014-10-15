@@ -13,7 +13,7 @@ Paging 的使用能帮助内核实现如下功能:
 * to allow and unallow memory space in a dynamic way
 
 
-在一个分页的系统中，每一个进程都可以在自己的完整4GB内存运行，同时不影响其他进程以及内核的内存空间。分页机简化了multitasking。
+在一个分页的系统中，每一个进程都可以在自己的完整4GB内存运行，同时不影响其他进程以及内核的内存空间。分页机制简化了multitasking。
 
 ![Processes memories](https://raw.githubusercontent.com/SamyPesse/How-to-Make-a-Computer-Operating-System/master/Chapter-8/processes.png)
 
