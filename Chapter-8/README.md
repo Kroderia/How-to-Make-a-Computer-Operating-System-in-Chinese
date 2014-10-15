@@ -15,7 +15,7 @@ Paging 的使用能帮助内核实现如下功能:
 
 在一个分页的系统中，每一个进程都可以在自己的完整4GB内存运行，同时不影响其他进程以及内核的内存空间。分页机简化了multitasking。
 
-![Processes memories](./processes.png)
+![Processes memories](https://raw.githubusercontent.com/SamyPesse/How-to-Make-a-Computer-Operating-System/master/Chapter-8/processes.png)
 
 #### 如何工作?
 
@@ -26,15 +26,15 @@ Paging 的使用能帮助内核实现如下功能:
 3. 线性地址中接下来的10 bits代表pages table中的offset，指向pages table 中的entry。这个entry指向一个4ko 的page
 4. 线性地址的最后12 bits代表在4ko page中的offset(从0到4095), 指向4ko page中的一个位置。
 
-![Address translation](./paging_memory.png)
+![Address translation](https://raw.githubusercontent.com/SamyPesse/How-to-Make-a-Computer-Operating-System/master/Chapter-8/paging_memory.png)
 
 #### Pages table and directory的格式
 
 这两种形式的entries (table and directory)看起来很像。 在我们的OS中，只用到了灰色部分。
 
-![Page directory entry](./page_directory_entry.png)
+![Page directory entry](https://raw.githubusercontent.com/SamyPesse/How-to-Make-a-Computer-Operating-System/master/Chapter-8/page_directory_entry.png)
 
-![Page table entry](./page_table_entry.png)
+![Page table entry](https://raw.githubusercontent.com/SamyPesse/How-to-Make-a-Computer-Operating-System/master/Chapter-8/page_table_entry.png)
 
 * `P`: 指明这个 page 或者 table 是否存在于物理内存
 * `R/W`: 指明这个 page 或者 table 是否可写 (1代表可写)
