@@ -219,7 +219,7 @@ void init_pic(void)
 
 #### 为什么IDT段的offset是ASM函数？
 
-你应该留意到在初始化IDT段时，我对段使用了汇编编写的offset。The se different functions are defined in [x86int.asm](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/x86int.asm) and are following the scheme:
+你应该留意到在初始化IDT段时，我对段使用了汇编编写的offset。這些個別的函式被定義在 [x86int.asm](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System/blob/master/src/kernel/arch/x86/x86int.asm) 而構想如下:
 
 ```
 %macro	SAVE_REGS 0
